@@ -19,12 +19,14 @@ class Downloader private constructor(private val config: DownloaderConfig) {
         onStart: () -> Unit = {},
         onProgress: (value: Int) -> Unit = { _ -> },
         onPause: () -> Unit = {},
+        onCancel: () -> Unit = {},
         onCompleted: () -> Unit = {},
         onError: (error: String) -> Unit = { _ -> }
     ): Int {
         request.onStart = onStart
         request.onProgress = onProgress
         request.onPause = onPause
+        request.onCancel = onCancel
         request.onCompleted = onCompleted
         request.onError = onError
         return reqQueue.enqueue(request)
