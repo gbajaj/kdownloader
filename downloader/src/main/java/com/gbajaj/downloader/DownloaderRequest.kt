@@ -49,7 +49,7 @@ class DownloaderRequest(
                 url = url,
                 tag = tag,
                 dirPath = dirPath,
-                downloadId = 0,
+                downloadId = getUniqueId(url, dirPath, fileName),
                 fileName = fileName,
                 readTimeOut = readTimeOut,
                 connectTimeOut = connectTimeOut

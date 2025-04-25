@@ -39,7 +39,6 @@ class MainActivity : ComponentActivity() {
                             downloader.newReqBuilder("someUrl", "someDirPath", "someFileName")
                                 .readTimeOut(10000).connectTimeOut(10000).tag("someTag").build()
                         val id = downloader.enqueue(
-
                             request = request,
                             onStart = {
                                 state.value = "started"
@@ -91,6 +90,8 @@ fun Greeting(
 @Composable
 fun GreetingPreview() {
     MyDownloaderAppTheme {
-//        Greeting("Android", 0)
+        val state = mutableStateOf("Downloading")
+        val progress = mutableIntStateOf(50)
+        Greeting(state, progress)
     }
 }

@@ -20,9 +20,11 @@ class DownloadDispatcher(private val httpClient: HttpClient) {
     private suspend fun execute(request: DownloaderRequest) {
         DownloadTask(request, httpClient).run(
             onStart = {
+                //IO
                 executeOnMainThread { request.onStart() }
             },
             onProgress = {
+                //IO
                 executeOnMainThread { request.onProgress(it) }
             },
             onPause = {
@@ -40,6 +42,7 @@ class DownloadDispatcher(private val httpClient: HttpClient) {
 
     private fun executeOnMainThread(block: () -> Unit) {
         scope.launch {
+            //Main Thread
             block()
         }
     }
